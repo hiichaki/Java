@@ -66,6 +66,7 @@ public class Pr7 extends JFrame {
      */
     public static void main(String[] args) {
         new Pr7();
+        System.out.println("TestGIT");
     }
     
 }
