@@ -20,7 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author hiichaki
+ * @author hiichaki qwe
  */
 public class Pr7 extends JFrame {
     JTextField fld = new JTextField();
