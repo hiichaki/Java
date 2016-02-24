@@ -145,6 +145,7 @@ public class Pr6 {
         frame.add(pass);
         frame.add(ok);
         frame.add(cancel);
+        
         int x=20,y=25,h=20,w=70;
 
         l.setBounds(x, y, w, h);
