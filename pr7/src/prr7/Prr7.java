@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
-import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -58,7 +57,11 @@ public class Prr7 extends JFrame {
  
         
         fld.addActionListener((ActionEvent e) -> {
-            lbl.setText("text:"+ fld.getText());
+            fld1.grabFocus();
+        });
+        
+        fld.addActionListener((ActionEvent e)->{
+            btn.doClick();
         });
         
         btn.addActionListener((ActionEvent e) -> {
