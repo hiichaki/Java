@@ -7,14 +7,20 @@ package pr11;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -32,14 +38,60 @@ public class TArea extends JFrame{
      catch(ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
          
      }
-    setSize(410, 200);
-    Container c = getContentPane();
+     
+    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    int w,h;
+    w=(int) screen.getWidth();
+    h=(int) screen.getHeight();
+    this.setBounds(w/3, h/3, 415, 355);
+    
+    Container a = getContentPane();
+    
+    JPanel m = new JPanel();
+    
+    a.add(m);
+    
     JPanel pane = new JPanel();
-   	c.add(pane, BorderLayout.CENTER);
-    pane.add(new JLabel("Hello, привіт"));
-    pane.add(txt = new JTextArea(15, 75));
-    JScrollPane scroll = new JScrollPane(txt);
+    m.add(pane, BorderLayout.CENTER);
+    pane.add(new JLabel("Function: Y=A*sqrt(X)*Sin(A*X)"));
+   
+    JPanel b = new JPanel(new GridLayout(2,1));
+    
+    b.setPreferredSize(new Dimension(385,100));
+//    b.setMinimumSize(new Dimension(400,100));
+//    b.setMaximumSize(new Dimension(400,100));
+    
+    b.setBorder(BorderFactory.createTitledBorder("Initial data"));
+     
+    pane = new JPanel();
+    b.add(pane,BorderLayout.NORTH);
+    
+    pane.add(new JLabel("Param A:"));
+    pane.add(new JTextField(15));
+    
+    pane = new JPanel();
+    b.add(pane,BorderLayout.SOUTH);
+
+    pane.add(new JLabel("Step (h):"));
+    pane.add(new JTextField(8));
+    pane.add(new JLabel("Points:"));
+    pane.add(new JTextField(8));
+    
+    m.add(b);
+    
+    pane = new JPanel();
+    m.add(pane,BorderLayout.NORTH);
+    txt = new JTextArea(9, 28);
+//    txt.setPreferredSize(new Dimension(385,100));
+    txt.setFont(new Font("Verdana", Font.PLAIN, 14));
+    
+    pane.add(txt);
+    JScrollPane scroll = new JScrollPane(txt,
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+   
     pane.add (scroll);
+    
     WindowListener wndCloser = new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
