@@ -14,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import algebra.TestVector;
-import java.awt.FlowLayout;
-import javax.swing.Icon;
 /**
  *
  * @author hiichaki
