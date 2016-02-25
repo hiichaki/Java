@@ -10,7 +10,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import static java.awt.PageAttributes.MediaType.A;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -67,15 +69,18 @@ public class TArea extends JFrame{
     b.add(pane,BorderLayout.NORTH);
     
     pane.add(new JLabel("Param A:"));
-    pane.add(new JTextField(15));
+    JTextField param = new JTextField(15);
+    pane.add(param);
     
     pane = new JPanel();
     b.add(pane,BorderLayout.SOUTH);
 
     pane.add(new JLabel("Step (h):"));
-    pane.add(new JTextField(8));
+    JTextField step = new JTextField(8);
+    pane.add(step);
     pane.add(new JLabel("Points:"));
-    pane.add(new JTextField(8));
+    JTextField points = new JTextField(8);
+    pane.add(points);
     
     m.add(b);
     
@@ -100,10 +105,16 @@ public class TArea extends JFrame{
     };
     addWindowListener(wndCloser);
     setVisible(true);
-  }
-  public void test() {
-    txt.append("Перший рядок\n");
-    txt.append("Другий рядок\n");
+    
+    points.addActionListener((ActionEvent e)->{
+        double _A,_step,_points;
+        _A=Double.parseDouble(param.getText());
+        _step=Double.parseDouble(step.getText());
+        _points=Double.parseDouble(points.getText());
+        for(double i=_step;i<_step*_points;i+=_step){
+            txt.append(i+"\t"+_A*Math.sqrt(i)*Math.sin(_A*i)+"\n");
+        }
+    });
   }
 
 }
