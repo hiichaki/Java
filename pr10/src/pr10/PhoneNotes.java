@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
-import java.io.*;
 
 /**
  *
@@ -33,7 +32,12 @@ public class PhoneNotes extends JFrame {
      catch(Exception e) {
      }
 
-    setSize(400, 250);
+    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    int w,h;
+    w=(int) screen.getWidth();
+    h=(int) screen.getHeight();
+    this.setBounds(w/3, h/3, 400, 250);
+    
     Container c = getContentPane();
 // Центральна панель
     JPanel centerPanel = new JPanel(new GridLayout(3, 1, 5, 5));
@@ -42,11 +46,14 @@ public class PhoneNotes extends JFrame {
     JLabel aLabel = new JLabel("Прізвище ");
     aPanel.add(aLabel);
     aPanel.add(fldFio);
+    
     centerPanel.add(aPanel);
+    
     aPanel = new JPanel();
     aLabel = new JLabel("Телефон ");
     aPanel.add(aLabel);
     aPanel.add(fldPhone);
+    
     centerPanel.add(aPanel);
     aPanel = new JPanel();
     JButton btn = new JButton("Надрукувати ");
