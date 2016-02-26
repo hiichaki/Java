@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import algebra.TestVector;
+import java.awt.FlowLayout;
 /**
  *
  * @author hiichaki
@@ -43,27 +44,27 @@ UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JFrame frm = new JFrame("Перше візуальне застосування");
         frm.setSize(300, 200);
         Container c = frm.getContentPane();
-        c.setLayout(null);
+        c.setLayout(new FlowLayout());
         JLabel[] lab = new JLabel[3]; 
         
-        for(int i=0;i<3;++i)
-            lab[i]= new JLabel();
-    
-        lab[0].setText("v 1*v2=" + v1.mult(v2));
-        c.add(lab[0]);
-        lab[1].setText(("v 1*v2=" + DoubleVector.mult(v1, v2)));
-        c.add(lab[1]);
-        lab[2].setText("v 1*v3=" + v1.mult(v3));
-        c.add(lab[2]);
+//        for(int i=0;i<3;++i)
+//            lab[i]= new JLabel();
+//    
+//        lab[0].setText("v 1*v2=" + v1.mult(v2));
+//        c.add(lab[0]);
+//        lab[1].setText(("v 1*v2=" + DoubleVector.mult(v1, v2)));
+//        c.add(lab[1]);
+//        lab[2].setText("v 1*v3=" + v1.mult(v3));
+//        c.add(lab[2]);
+//        
+//        for(int i=0;i<3;++i){
+//            lab[i].setBounds(50, (i+1)*30, 100, 10);
+//        }
         
-        for(int i=0;i<3;++i){
-            lab[i].setBounds(50, (i+1)*30, 100, 10);
-        }
         
-        
-//        c.add(new JLabel("v 1*v2=" + v1.mult(v2)));
-//        c.add(new JLabel("v 1*v2=" + DoubleVector.mult(v1, v2)));
-//        c.add(new JLabel("v 1*v3=" + v1.mult(v3)));
+        c.add(new JLabel("v 1*v2=" + v1.mult(v2)));
+        c.add(new JLabel("v 1*v2=" + DoubleVector.mult(v1, v2)));
+        c.add(new JLabel("v 1*v3=" + v1.mult(v3)));
 // фрагмент as is (2)
         WindowListener wndCloser = new WindowAdapter() {
             public void windowClosing(WindowEvent e){
