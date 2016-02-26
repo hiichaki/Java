@@ -89,16 +89,18 @@ public class Test extends JFrame {
         System.out.println("s:"+qs[n-2].getSelected());
         System.out.println("r:"+qs[n-2].getRight());
         if(qs[n-2].isRigth()){
-            mark+=5;
+            list.add(5);
         } else {
-            mark+=2;
+            list.add(2);
         }
     }
     
     private JPanel next(){
         if(n>3){
             calc();
-            mark/=4;
+            for(int i=0;i<list.size();++i)
+                mark+=(int) list.get(i);
+            mark/=list.size();
             JPanel result = new JPanel();
             JLabel l = new JLabel("Your result - "+ Integer.toString(mark));
             
