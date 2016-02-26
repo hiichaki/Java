@@ -25,7 +25,6 @@ public class Question {
         right=r;
     }
 
-    
     public String get(int n){
         String tmp = new String();
         switch(n){
