@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -29,18 +30,23 @@ import javax.swing.JRadioButton;
 public class Test extends JFrame {
     Question[] qs = new Question[4];
     static int n=0;
+    int mark;
     boolean f=true;
     JPanel tmp = new JPanel();
+    Container c = getContentPane();
+    
     Test(){
         super("Test");
         
         for(int i=0;i<qs.length;++i)
             qs[i] = new Question();
         
-        qs[0].setQuestion("WTF?", false, "azaza", false, "trololo", true, "qwe");
-        qs[1].setQuestion("azaza?", false, "lol", true, "qwerty", false, "asdfg");
-        qs[2].setQuestion("bugaga?", true, "wow", false, "zxcvb", false, "asdfg");
-        qs[3].setQuestion("???", false, "dfg", false, "cvb", true, "qazwsx");
+        qs[0].setQuestion("WTF?", "azaza", "+trololo", "qwe", 1);
+        qs[1].setQuestion("azaza?", "lol", "+qwerty", "asdfg", 1);
+        qs[2].setQuestion("bugaga?", "wow", "zxcvb",  "+asdfg", 2);
+        qs[3].setQuestion("???", "+dfg", "cvb", "qazwsx", 0);
+        
+        mark=0;
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
@@ -49,8 +55,9 @@ public class Test extends JFrame {
         w=(int) screen.getWidth();
         h=(int) screen.getHeight();
         this.setBounds(w/3, h/3, 350, 250);
+            
 
-        Container c = getContentPane();
+        
         tmp = next();
         c.add(tmp,BorderLayout.NORTH);
         
@@ -66,15 +73,45 @@ public class Test extends JFrame {
             c.add(tmp,BorderLayout.NORTH);
             revalidate();
             repaint();
+            calc();
+            System.out.println(mark);
+  
         });
-        
-        
+
         setVisible(true);
     }
     
-    JPanel next(){
-        if(n>3)
-            return new JPanel();
+    private void calc(){
+        System.out.println("s:"+qs[n-2].getSelected());
+        System.out.println("r:"+qs[n-2].getRight());
+        if(qs[n-2].isRigth()){
+            mark+=5;
+        } else {
+            mark+=2;
+        }
+    }
+    
+    private JPanel next(){
+        if(n>3){
+            calc();
+            mark/=4;
+            JPanel result = new JPanel();
+            JLabel l = new JLabel("Your result - "+ Integer.toString(mark));
+            
+            getContentPane().removeAll();   
+
+            l.setVerticalAlignment(JLabel.CENTER);
+            l.setHorizontalAlignment(JLabel.CENTER);
+            l.setPreferredSize(new Dimension(300,200));
+//            l.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            l.setFont(new Font("Verdana", Font.PLAIN, 18));
+            
+            result.add(l);  
+            revalidate();
+            repaint();
+            c.add(result);
+            return result;
+        }
         
         JPanel questionPanel = new JPanel(new GridLayout(4,1));
         questionPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -82,7 +119,11 @@ public class Test extends JFrame {
 
         ActionListener ac = (ActionEvent actionEvent) -> {
             AbstractButton aButton = (AbstractButton) actionEvent.getSource();
-            System.out.println("Selected: " + aButton.getText());
+            for(int i=0;i<3;++i)
+                if(aButton.getText().equals(qs[n-1].get(i))){
+                    qs[n-1].setSelected(i);
+                    System.out.println("s:"+qs[n-1].getSelected());
+                }
         };
 
         ButtonGroup group = new ButtonGroup();
@@ -102,7 +143,9 @@ public class Test extends JFrame {
             questionPanel.add(pane);
             RB[j].addActionListener(ac);
         }
-        n++;
+        if(n<4)
+            n++;
         return questionPanel;
     }
 }
+

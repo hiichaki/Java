@@ -14,13 +14,15 @@ public class Question {
     private String a;
     private String b;
     private String c;
-    boolean A, B, C;
+    private int right;
+    private int selected;
     
-    public void setQuestion (String _q, boolean aa, String _a, boolean bb, String _b, boolean cc, String _c){
+    public void setQuestion (String _q, String _a, String _b, String _c,int r){
         q=_q;
-        a=_a; A=aa;
-        b=_b; B=bb;
-        c=_c; C=cc;
+        a=_a; 
+        b=_b; 
+        c=_c; 
+        right=r;
     }
 
     
@@ -34,38 +36,36 @@ public class Question {
         return tmp;
     }
     
-    public int rigth(int n){
-        return 0;
-        
-    
+    public boolean isRigth(){
+        return selected==getRight();
     }
-    
-    /**
-     * @return the a
-     */
-    public String getA() {
-        return a;
-    }
-
-    /**
-     * @return the b
-     */
-    public String getB() {
-        return b;
-    }
-
-    /**
-     * @return the c
-     */
-    public String getC() {
-        return c;
-    }
-
+ 
     /**
      * @return the q
      */
     public String getQ() {
         return q;
+    }
+
+    /**
+     * @return the selected
+     */
+    public int getSelected() {
+        return selected;
+    }
+
+    /**
+     * @param selected the selected to set
+     */
+    public void setSelected(int selected) {
+        this.selected = selected;
+    }
+
+    /**
+     * @return the right
+     */
+    public int getRight() {
+        return right;
     }
 
     
