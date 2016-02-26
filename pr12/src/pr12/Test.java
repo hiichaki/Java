@@ -23,7 +23,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EtchedBorder;
+import java.util.ArrayList;
 
+//TODO ArrayList
 /**
  *
  * @author hiichaki
@@ -35,10 +37,11 @@ public class Test extends JFrame {
     boolean f=true;
     JPanel tmp = new JPanel();
     Container c = getContentPane();
-    
+    ArrayList list = new ArrayList();
+ 
     Test(){
         super("Test");
-        
+           
         for(int i=0;i<qs.length;++i)
             qs[i] = new Question();
         
@@ -50,7 +53,7 @@ public class Test extends JFrame {
         mark=0;
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setLayout(new BorderLayout());
+//        setLayout(new GridLayout(2,1));
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int w,h;
         w=(int) screen.getWidth();
@@ -60,16 +63,16 @@ public class Test extends JFrame {
         tmp = next();
         c.add(tmp,BorderLayout.NORTH);
         
-        JButton n = new JButton("next");
+        JButton nextButton = new JButton("next");
         JPanel nn = new JPanel();
-        nn.add(n, BorderLayout.SOUTH);
+        nn.add(nextButton, BorderLayout.SOUTH);
         nn.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEtchedBorder(EtchedBorder.LOWERED),
                 BorderFactory.createEmptyBorder(25, 25, 25, 25)));
         nn.setPreferredSize(new Dimension(getWidth()-25,80));
         c.add(nn);
         
-        n.addActionListener((ActionEvent e) -> {
+        nextButton.addActionListener((ActionEvent e) -> {
             c.remove(tmp);
             tmp=next();
             c.add(tmp,BorderLayout.NORTH);
@@ -77,7 +80,6 @@ public class Test extends JFrame {
             repaint();
             calc();
             System.out.println(mark);
-  
         });
 
         setVisible(true);
