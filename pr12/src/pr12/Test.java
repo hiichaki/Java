@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -49,22 +50,23 @@ public class Test extends JFrame {
         mark=0;
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
+//        setLayout(new BorderLayout());
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int w,h;
         w=(int) screen.getWidth();
         h=(int) screen.getHeight();
-        this.setBounds(w/3, h/3, 350, 250);
-            
-
-        
+        this.setBounds(w/3, h/3, 350, 280);
+              
         tmp = next();
         c.add(tmp,BorderLayout.NORTH);
         
         JButton n = new JButton("next");
         JPanel nn = new JPanel();
         nn.add(n, BorderLayout.SOUTH);
-        nn.setBorder(BorderFactory.createEtchedBorder());
+        nn.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEtchedBorder(EtchedBorder.LOWERED),
+                BorderFactory.createEmptyBorder(25, 25, 25, 25)));
+        nn.setPreferredSize(new Dimension(getWidth()-25,80));
         c.add(nn);
         
         n.addActionListener((ActionEvent e) -> {
@@ -114,7 +116,10 @@ public class Test extends JFrame {
         }
         
         JPanel questionPanel = new JPanel(new GridLayout(4,1));
-        questionPanel.setBorder(BorderFactory.createEtchedBorder());
+        questionPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEtchedBorder(EtchedBorder.LOWERED),
+                BorderFactory.createEmptyBorder(25, 25, 25, 25)));
+        questionPanel.setPreferredSize(new Dimension(getWidth()-20,150));
         JPanel pane = new JPanel(new FlowLayout());
 
         ActionListener ac = (ActionEvent actionEvent) -> {
