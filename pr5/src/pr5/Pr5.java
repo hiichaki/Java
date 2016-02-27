@@ -62,9 +62,9 @@ UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 //        }
         
         
-        c.add(new JLabel("v 1*v2=" + v1.mult(v2)));
-        c.add(new JLabel("v 1*v2=" + DoubleVector.mult(v1, v2)));
-        c.add(new JLabel("v 1*v3=" + v1.mult(v3)));
+        c.add(new JLabel("       v 1*v2=" + v1.mult(v2)));
+        c.add(new JLabel("       v 1*v2=" + DoubleVector.mult(v1, v2)));
+        c.add(new JLabel("       v 1*v3=" + v1.mult(v3)));
 // фрагмент as is (2)
         WindowListener wndCloser = new WindowAdapter() {
             public void windowClosing(WindowEvent e){
