@@ -37,6 +37,7 @@ public class Prr7 extends JFrame {
         }  
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e){
         }
+        
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int w,h;
         w=(int) screen.getWidth();
